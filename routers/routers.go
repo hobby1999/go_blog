@@ -11,7 +11,8 @@ func Start() {
 	engine.LoadHTMLGlob("templates/*")
 	engine.Static("/assets", "./assets")
 
-	engine.GET("/index", controller.ListUser)
-	engine.POST("/index", controller.AddUser)
+	engine.GET("/login", controller.GoLogin)
+	engine.POST("/login", controller.Login)
+	engine.GET("/", controller.Index)
 	engine.Run()
 }

@@ -10,6 +10,7 @@ import (
 
 type Manager interface {
 	AddUser(user *model.User)
+	CheckUser(username string) model.User
 }
 
 type manager struct {
@@ -30,4 +31,10 @@ func init() {
 
 func (mgr *manager) AddUser(user *model.User) {
 	mgr.db.Create(user)
+}
+
+func (mgr *manager) CheckUser(username string) model.User {
+	var user model.User
+	mgr.db.Where("username=?", username).First(&user)
+	return user
 }
